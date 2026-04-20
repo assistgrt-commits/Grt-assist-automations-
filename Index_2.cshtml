@@ -1,0 +1,151 @@
+@{
+    ViewBag.Title = "Careers";
+    var jobs = ViewBag.Jobs as List<NTSPLSite.Models.JobListing> ?? new();
+    var departments = ViewBag.Departments as List<string> ?? new();
+}
+
+<section class="page-hero">
+    <div class="container">
+        <div class="page-hero-content">
+            <span class="section-badge">Join Our Team</span>
+            <h1>Career Opportunities</h1>
+            <p>Be part of a passionate team building enterprise solutions that impact millions of people across India.</p>
+            <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                <a href="/">Home</a> <i class="fas fa-chevron-right"></i> <span>Careers</span>
+            </nav>
+        </div>
+    </div>
+</section>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert-success container">
+        <i class="fas fa-check-circle"></i> @Html.Raw(TempData["Success"]?.ToString())
+    </div>
+}
+
+<section class="section why-join-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">Why TechSolvePro</span>
+            <h2 class="section-title">Why Work With Us?</h2>
+        </div>
+        <div class="perks-grid">
+            <div class="perk-card">
+                <div class="perk-icon"><i class="fas fa-graduation-cap"></i></div>
+                <h4>Continuous Learning</h4>
+                <p>Access to certifications, training programs, and conference sponsorships to keep your skills sharp.</p>
+            </div>
+            <div class="perk-card">
+                <div class="perk-icon"><i class="fas fa-laptop-house"></i></div>
+                <h4>Flexible Work</h4>
+                <p>Remote and hybrid options for eligible roles, with modern collaboration tools and async-friendly culture.</p>
+            </div>
+            <div class="perk-card">
+                <div class="perk-icon"><i class="fas fa-chart-line"></i></div>
+                <h4>Career Growth</h4>
+                <p>Clear progression paths, regular performance reviews, and internal promotion opportunities.</p>
+            </div>
+            <div class="perk-card">
+                <div class="perk-icon"><i class="fas fa-users"></i></div>
+                <h4>Great Team Culture</h4>
+                <p>Work with talented, collaborative colleagues on challenging projects that push the boundaries of technology.</p>
+            </div>
+            <div class="perk-card">
+                <div class="perk-icon"><i class="fas fa-heartbeat"></i></div>
+                <h4>Health Benefits</h4>
+                <p>Comprehensive health insurance for you and your family, plus wellness initiatives and paid time off.</p>
+            </div>
+            <div class="perk-card">
+                <div class="perk-icon"><i class="fas fa-trophy"></i></div>
+                <h4>Recognition & Rewards</h4>
+                <p>Performance bonuses, spot awards, and regular recognition programs that celebrate your contributions.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section jobs-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">Open Positions</span>
+            <h2 class="section-title">Current Openings</h2>
+        </div>
+
+        <div class="jobs-filter-tabs" id="jobTabs">
+            <button class="job-tab active" data-dept="all">All Departments</button>
+            @foreach (var dept in departments)
+            {
+                <button class="job-tab" data-dept="@dept.ToLower()">@dept</button>
+            }
+        </div>
+
+        <div class="jobs-list" id="jobsList">
+            @for (int i = 0; i < jobs.Count; i++)
+            {
+                var job = jobs[i];
+                <div class="job-card" data-dept="@job.Department.ToLower()">
+                    <div class="job-header">
+                        <div class="job-title-group">
+                            <h3>@job.Title</h3>
+                            <div class="job-meta">
+                                <span><i class="fas fa-building"></i> @job.Department</span>
+                                <span><i class="fas fa-map-marker-alt"></i> @job.Location</span>
+                                <span><i class="fas fa-briefcase"></i> @job.Type</span>
+                                <span><i class="fas fa-star"></i> @job.Experience</span>
+                            </div>
+                        </div>
+                        <button class="btn-apply-toggle" onclick="toggleApplyForm(this)">Apply Now <i class="fas fa-chevron-down"></i></button>
+                    </div>
+                    <p class="job-desc">@job.Description</p>
+                    <div class="job-skills">
+                        @foreach (var skill in job.Skills)
+                        {
+                            <span class="skill-tag">@skill</span>
+                        }
+                    </div>
+
+                    <div class="apply-form-wrapper" style="display:none;">
+                        <form asp-action="Apply" asp-controller="Career" method="post" class="apply-form">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="jobTitle" value="@job.Title" />
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Full Name *</label>
+                                    <input type="text" name="name" class="form-control" required placeholder="Your full name" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Email Address *</label>
+                                    <input type="email" name="email" class="form-control" required placeholder="your@email.com" />
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Phone Number</label>
+                                    <input type="tel" name="phone" class="form-control" placeholder="+91 98765 43210" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Cover Letter / Note</label>
+                                    <input type="text" name="coverLetter" class="form-control" placeholder="Brief note about yourself" />
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-primary">Submit Application <i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container cta-inner">
+        <div class="cta-content">
+            <h2>Don't See a Fitting Role?</h2>
+            <p>Send us your resume and we'll reach out when a suitable opening comes up.</p>
+        </div>
+        <div class="cta-actions">
+            <a href="mailto:careers@techsolvepro.com" class="btn-primary-large"><i class="fas fa-envelope"></i> careers@techsolvepro.com</a>
+        </div>
+    </div>
+</section>

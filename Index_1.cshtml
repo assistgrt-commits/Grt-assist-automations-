@@ -1,0 +1,47 @@
+@{
+    ViewBag.Title = "Services";
+    var services = ViewBag.Services as List<NTSPLSite.Models.ServiceItem> ?? new();
+}
+
+<section class="page-hero">
+    <div class="container">
+        <div class="page-hero-content">
+            <span class="section-badge">What We Do</span>
+            <h1>Our IT Services</h1>
+            <p>Comprehensive technology solutions built with expertise across every layer of the modern software stack.</p>
+            <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                <a href="/">Home</a> <i class="fas fa-chevron-right"></i> <span>Services</span>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="section services-full">
+    <div class="container">
+        <div class="services-grid services-grid-large">
+            @foreach (var svc in services)
+            {
+                <a href="@svc.Url" class="service-card service-card-lg">
+                    <div class="service-icon">
+                        <i class="fas fa-@svc.Icon"></i>
+                    </div>
+                    <h3 class="service-title">@svc.Title</h3>
+                    <p class="service-desc">@svc.Description</p>
+                    <span class="service-link">Learn More <i class="fas fa-arrow-right"></i></span>
+                </a>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container cta-inner">
+        <div class="cta-content">
+            <h2>Need a Custom Solution?</h2>
+            <p>Contact us to discuss your specific requirements and get a tailored proposal.</p>
+        </div>
+        <div class="cta-actions">
+            <a href="/Contact" class="btn-primary-large">Get a Free Quote <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,134 @@
+@{
+    ViewBag.Title = "Contact Us";
+}
+
+<section class="page-hero">
+    <div class="container">
+        <div class="page-hero-content">
+            <span class="section-badge">Get In Touch</span>
+            <h1>Contact Us</h1>
+            <p>Have a project in mind or need a consultation? We'd love to hear from you.</p>
+            <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                <a href="/">Home</a> <i class="fas fa-chevron-right"></i> <span>Contact</span>
+            </nav>
+        </div>
+    </div>
+</section>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert-success container">
+        <i class="fas fa-check-circle"></i> @Html.Raw(TempData["Success"]?.ToString())
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert-error container">
+        <i class="fas fa-exclamation-circle"></i> @TempData["Error"]
+    </div>
+}
+
+<section class="section contact-section">
+    <div class="container contact-layout">
+        <div class="contact-form-col">
+            <h2>Send Us a Message</h2>
+            <p class="contact-intro">Fill out the form below and one of our consultants will respond within 1 business day.</p>
+            <form asp-action="Submit" asp-controller="Contact" method="post" class="contact-form">
+                @Html.AntiForgeryToken()
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="Name">Full Name *</label>
+                        <input type="text" id="Name" name="Name" placeholder="John Doe" required class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Email">Email Address *</label>
+                        <input type="email" id="Email" name="Email" placeholder="john@company.com" required class="form-control" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="Phone">Phone Number</label>
+                        <input type="tel" id="Phone" name="Phone" placeholder="+91 98765 43210" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Company">Company / Organization</label>
+                        <input type="text" id="Company" name="Company" placeholder="Your Company" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Service">Service You're Interested In</label>
+                    <select id="Service" name="Service" class="form-control">
+                        <option value="">-- Select a Service --</option>
+                        <option>Web Development</option>
+                        <option>Mobile App Development</option>
+                        <option>Cybersecurity & PKI</option>
+                        <option>Business Intelligence</option>
+                        <option>AI / ML Development</option>
+                        <option>Digital Marketing</option>
+                        <option>Cloud & Hosting</option>
+                        <option>GPS Tracking System</option>
+                        <option>Digital Signatures</option>
+                        <option>ERP Solutions</option>
+                        <option>UI / UX Design</option>
+                        <option>E-Commerce</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Subject">Subject *</label>
+                    <input type="text" id="Subject" name="Subject" placeholder="Project Inquiry - Web Portal" required class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="Message">Your Message *</label>
+                    <textarea id="Message" name="Message" rows="6" placeholder="Describe your project requirements, timeline, and budget..." required class="form-control"></textarea>
+                </div>
+                <button type="submit" class="btn-primary btn-submit">Send Message <i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+
+        <div class="contact-info-col">
+            <div class="contact-info-card">
+                <h3>Office Location</h3>
+                <div class="ci-item">
+                    <div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div>
+                        <strong>Head Office</strong>
+                        <p>Plot No. 123, Tech Park, Bhubaneswar<br>Odisha - 751024, India</p>
+                    </div>
+                </div>
+                <div class="ci-item">
+                    <div class="ci-icon"><i class="fas fa-phone-alt"></i></div>
+                    <div>
+                        <strong>Phone</strong>
+                        <p><a href="tel:+918260003333">+91-82600-03333</a></p>
+                    </div>
+                </div>
+                <div class="ci-item">
+                    <div class="ci-icon"><i class="fas fa-envelope"></i></div>
+                    <div>
+                        <strong>Email</strong>
+                        <p><a href="mailto:info@techsolvepro.com">info@techsolvepro.com</a><br>
+                        <a href="mailto:sales@techsolvepro.com">sales@techsolvepro.com</a></p>
+                    </div>
+                </div>
+                <div class="ci-item">
+                    <div class="ci-icon"><i class="fas fa-clock"></i></div>
+                    <div>
+                        <strong>Business Hours</strong>
+                        <p>Monday – Saturday<br>9:00 AM – 6:30 PM IST</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-info-card social-card">
+                <h3>Connect With Us</h3>
+                <div class="contact-social">
+                    <a href="#" class="cs-link linkedin"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                    <a href="#" class="cs-link twitter"><i class="fab fa-twitter"></i> Twitter</a>
+                    <a href="#" class="cs-link facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    <a href="#" class="cs-link youtube"><i class="fab fa-youtube"></i> YouTube</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

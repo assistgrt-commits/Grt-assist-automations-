@@ -1,0 +1,58 @@
+@{
+    ViewBag.Title = "Blog";
+    var posts = ViewBag.Posts as List<NTSPLSite.Models.BlogPost> ?? new();
+    var categories = ViewBag.Categories as List<string> ?? new();
+    string activeCategory = ViewBag.ActiveCategory ?? "All";
+}
+
+<section class="page-hero">
+    <div class="container">
+        <div class="page-hero-content">
+            <span class="section-badge">Insights & Updates</span>
+            <h1>Blog & Resources</h1>
+            <p>Expert insights on enterprise software, cybersecurity, AI, cloud architecture, and digital transformation.</p>
+            <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                <a href="/">Home</a> <i class="fas fa-chevron-right"></i> <span>Blog</span>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="blog-filter-tabs">
+            <a href="/Blog" class="filter-btn @(activeCategory == "All" ? "active" : "")">All</a>
+            @foreach (var cat in categories)
+            {
+                <a href="/Blog?category=@Uri.EscapeDataString(cat)" class="filter-btn @(activeCategory == cat ? "active" : "")">@cat</a>
+            }
+        </div>
+
+        <div class="blog-grid">
+            @foreach (var post in posts)
+            {
+                <a href="/Blog/Detail/@post.Id" class="blog-card">
+                    <div class="blog-image">
+                        <img src="@post.ImageUrl" alt="@post.Title" loading="lazy" />
+                        <span class="blog-category">@post.Category</span>
+                    </div>
+                    <div class="blog-info">
+                        <div class="blog-meta">
+                            <span><i class="fas fa-user"></i> @post.Author</span>
+                            <span><i class="fas fa-calendar-alt"></i> @post.PublishedDate.ToString("MMM dd, yyyy")</span>
+                        </div>
+                        <h3>@post.Title</h3>
+                        <p>@post.Summary</p>
+                        <div class="blog-tags">
+                            @foreach (var tag in post.Tags.Take(3))
+                            {
+                                <span class="btag">@tag</span>
+                            }
+                        </div>
+                        <span class="blog-read-more">Read Article <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+</section>

@@ -1,0 +1,80 @@
+@{
+    var post = ViewBag.Post as NTSPLSite.Models.BlogPost;
+    var related = ViewBag.RelatedPosts as List<NTSPLSite.Models.BlogPost> ?? new();
+    ViewBag.Title = post?.Title ?? "Blog";
+}
+
+<section class="page-hero page-hero-sm">
+    <div class="container">
+        <div class="page-hero-content">
+            <span class="section-badge">@post?.Category</span>
+            <h1>@post?.Title</h1>
+            <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                <a href="/">Home</a> <i class="fas fa-chevron-right"></i>
+                <a href="/Blog">Blog</a> <i class="fas fa-chevron-right"></i>
+                <span>Article</span>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container blog-detail-layout">
+        <article class="blog-article">
+            <div class="article-hero-image">
+                <img src="@post?.ImageUrl" alt="@post?.Title" />
+            </div>
+            <div class="article-meta">
+                <span><i class="fas fa-user"></i> @post?.Author</span>
+                <span><i class="fas fa-calendar-alt"></i> @post?.PublishedDate.ToString("MMMM dd, yyyy")</span>
+                <span><i class="fas fa-tag"></i> @post?.Category</span>
+            </div>
+            <h2>@post?.Title</h2>
+            <p class="article-lead">@post?.Summary</p>
+            <div class="article-content">
+                <p>@post?.Content</p>
+            </div>
+            <div class="article-tags">
+                @foreach (var tag in post?.Tags ?? new())
+                {
+                    <span class="btag">@tag</span>
+                }
+            </div>
+        </article>
+
+        <aside class="blog-sidebar">
+            <div class="sidebar-widget">
+                <h4>About the Author</h4>
+                <div class="author-card">
+                    <div class="author-avatar"><i class="fas fa-users"></i></div>
+                    <div>
+                        <strong>@post?.Author</strong>
+                        <span>TechSolvePro Technology Team</span>
+                    </div>
+                </div>
+            </div>
+            @if (related.Any())
+            {
+                <div class="sidebar-widget">
+                    <h4>Related Articles</h4>
+                    @foreach (var r in related)
+                    {
+                        <a href="/Blog/Detail/@r.Id" class="related-post">
+                            <img src="@r.ImageUrl" alt="@r.Title" />
+                            <div>
+                                <span class="rp-cat">@r.Category</span>
+                                <p>@r.Title</p>
+                            </div>
+                        </a>
+                    }
+                </div>
+            }
+            <div class="sidebar-widget sidebar-cta-widget">
+                <i class="fas fa-lightbulb sidebar-cta-icon"></i>
+                <h4>Need Expert Advice?</h4>
+                <p>Consult with our technology team for your next project.</p>
+                <a href="/Contact" class="btn-primary w-full">Get in Touch</a>
+            </div>
+        </aside>
+    </div>
+</section>

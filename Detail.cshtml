@@ -1,0 +1,81 @@
+@{
+    ViewBag.Title = ViewBag.Service?.Title ?? "Service";
+    var service = ViewBag.Service as NTSPLSite.Models.ServiceItem;
+    var related = ViewBag.RelatedServices as List<NTSPLSite.Models.ServiceItem> ?? new();
+}
+
+<section class="page-hero">
+    <div class="container">
+        <div class="page-hero-content">
+            <span class="section-badge">Our Services</span>
+            <h1>@service?.Title</h1>
+            <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                <a href="/">Home</a> <i class="fas fa-chevron-right"></i>
+                <a href="/Services">Services</a> <i class="fas fa-chevron-right"></i>
+                <span>@service?.Title</span>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container service-detail-layout">
+        <div class="service-detail-main">
+            <div class="sd-icon-wrap"><i class="fas fa-@service?.Icon"></i></div>
+            <h2>@service?.Title</h2>
+            <p class="service-detail-lead">@service?.Description</p>
+
+            <div class="sd-content">
+                <h3>Our Approach</h3>
+                <p>We follow a structured, client-centric methodology to deliver @service?.Title solutions that are scalable, secure, and aligned with your business objectives. Our team of certified professionals brings hands-on expertise and industry best practices to every engagement.</p>
+
+                <h3>What We Deliver</h3>
+                <ul class="sd-list">
+                    <li><i class="fas fa-check-circle"></i> Thorough requirements analysis and technology consultation</li>
+                    <li><i class="fas fa-check-circle"></i> Architecture design tailored to your scale and security needs</li>
+                    <li><i class="fas fa-check-circle"></i> Iterative development with regular demos and feedback loops</li>
+                    <li><i class="fas fa-check-circle"></i> Rigorous QA, security testing, and performance optimization</li>
+                    <li><i class="fas fa-check-circle"></i> Production deployment, go-live support, and knowledge transfer</li>
+                    <li><i class="fas fa-check-circle"></i> Post-deployment monitoring and SLA-backed maintenance</li>
+                </ul>
+
+                <h3>Technologies We Use</h3>
+                <div class="tech-tags sd-tags">
+                    <span>ASP.NET Core</span><span>C#</span><span>React.js</span><span>Angular</span>
+                    <span>SQL Server</span><span>Azure</span><span>Docker</span><span>REST APIs</span>
+                </div>
+            </div>
+
+            <div class="sd-cta">
+                <a href="/Contact" class="btn-primary">Discuss Your Project <i class="fas fa-arrow-right"></i></a>
+                <a href="/Portfolio" class="btn-outline">View Related Work <i class="fas fa-external-link-alt"></i></a>
+            </div>
+        </div>
+
+        <aside class="service-sidebar">
+            <div class="sidebar-widget">
+                <h4>All Services</h4>
+                <ul class="sidebar-services">
+                    <li><a href="/Services/Detail/WebDevelopment"><i class="fas fa-globe"></i> Web Development</a></li>
+                    <li><a href="/Services/Detail/MobileApps"><i class="fas fa-mobile-alt"></i> Mobile Apps</a></li>
+                    <li><a href="/Services/Detail/Cybersecurity"><i class="fas fa-shield-alt"></i> Cybersecurity & PKI</a></li>
+                    <li><a href="/Services/Detail/BusinessIntelligence"><i class="fas fa-chart-bar"></i> Business Intelligence</a></li>
+                    <li><a href="/Services/Detail/AiMl"><i class="fas fa-robot"></i> AI / ML</a></li>
+                    <li><a href="/Services/Detail/DigitalMarketing"><i class="fas fa-bullhorn"></i> Digital Marketing</a></li>
+                    <li><a href="/Services/Detail/CloudHosting"><i class="fas fa-cloud"></i> Cloud & Hosting</a></li>
+                    <li><a href="/Services/Detail/GpsTracking"><i class="fas fa-map-marker-alt"></i> GPS Tracking</a></li>
+                    <li><a href="/Services/Detail/DigitalSignature"><i class="fas fa-file-signature"></i> Digital Signatures</a></li>
+                    <li><a href="/Services/Detail/Erp"><i class="fas fa-cogs"></i> ERP Solutions</a></li>
+                    <li><a href="/Services/Detail/UiUxDesign"><i class="fas fa-paint-brush"></i> UI / UX Design</a></li>
+                    <li><a href="/Services/Detail/Ecommerce"><i class="fas fa-shopping-cart"></i> E-Commerce</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-widget sidebar-cta-widget">
+                <i class="fas fa-headset sidebar-cta-icon"></i>
+                <h4>Get a Free Consultation</h4>
+                <p>Talk to our experts about your project requirements.</p>
+                <a href="/Contact" class="btn-primary w-full">Contact Us</a>
+            </div>
+        </aside>
+    </div>
+</section>

@@ -1,0 +1,63 @@
+@{
+    ViewBag.Title = "Portfolio";
+    var projects = ViewBag.Projects as List<NTSPLSite.Models.PortfolioItem> ?? new();
+    var categories = ViewBag.Categories as List<string> ?? new();
+    string activeFilter = ViewBag.ActiveFilter ?? "All";
+}
+
+<section class="page-hero">
+    <div class="container">
+        <div class="page-hero-content">
+            <span class="section-badge">Our Work</span>
+            <h1>Project Portfolio</h1>
+            <p>Real-world solutions delivered for enterprises, government organizations, and growing businesses across industries.</p>
+            <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                <a href="/">Home</a> <i class="fas fa-chevron-right"></i> <span>Portfolio</span>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="portfolio-filters">
+            <a href="/Portfolio" class="filter-btn @(activeFilter == "All" ? "active" : "")">All</a>
+            @foreach (var cat in categories)
+            {
+                <a href="/Portfolio?filter=@Uri.EscapeDataString(cat)" class="filter-btn @(activeFilter == cat ? "active" : "")">@cat</a>
+            }
+        </div>
+
+        <div class="portfolio-grid portfolio-grid-full">
+            @foreach (var proj in projects)
+            {
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="@proj.ImageUrl" alt="@proj.Title" loading="lazy" />
+                        <div class="portfolio-overlay">
+                            <span class="p-category">@proj.Category</span>
+                            <span class="p-industry">@proj.Industry</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>@proj.Title</h3>
+                        <p>@proj.Description</p>
+                        <div class="p-tech"><i class="fas fa-code"></i> @proj.Technology</div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container cta-inner">
+        <div class="cta-content">
+            <h2>Have a Project in Mind?</h2>
+            <p>Let's discuss how we can build something remarkable together.</p>
+        </div>
+        <div class="cta-actions">
+            <a href="/Contact" class="btn-primary-large">Start a Conversation <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+</section>

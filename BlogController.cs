@@ -1,0 +1,39 @@
+using Microsoft.AspNetCore.Mvc;
+using NTSPLSite.Models;
+
+namespace NTSPLSite.Controllers;
+
+public class BlogController : Controller
+{
+    private static readonly List<BlogPost> Posts = new()
+    {
+        new() { Id = 1, Title = "ASP.NET Core 8: Top New Features for Enterprise Development", Category = "Development", Summary = "Explore the most impactful new features in ASP.NET Core 8 that boost performance, developer productivity, and cloud-native capabilities for enterprise projects.", Author = "Tech Team", PublishedDate = new DateTime(2024, 10, 15), ImageUrl = "https://images.pexels.com/photos/574069/pexels-photo-574069.jpeg?w=700", Tags = new() { "ASP.NET Core", "C#", ".NET 8", "Enterprise" }, Content = "ASP.NET Core 8 brings significant improvements including enhanced Blazor capabilities, improved performance with AOT compilation, new minimal API features, and built-in identity UI. For enterprise developers, the improvements to EF Core 8, new time-series query support, and enhanced JSON column support are game changers. The new keyed DI services and frozen collections further optimize performance in large-scale applications. Upgrading to .NET 8 is highly recommended for all enterprise projects targeting long-term support." },
+        new() { Id = 2, Title = "Why Every Business Needs a PKI Strategy in 2024", Category = "Cybersecurity", Summary = "As digital transactions surge, PKI infrastructure has moved from optional to essential. We break down the key components of a robust PKI strategy for businesses of all sizes.", Author = "Security Team", PublishedDate = new DateTime(2024, 9, 28), ImageUrl = "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?w=700", Tags = new() { "PKI", "Digital Signature", "Cybersecurity", "Compliance" }, Content = "Public Key Infrastructure (PKI) forms the backbone of secure digital communication. With regulatory requirements tightening globally, organizations must establish clear PKI strategies covering certificate lifecycle management, hardware security modules (HSMs), and policy enforcement. Key components include Certificate Authority (CA) setup, Registration Authority (RA) processes, certificate revocation protocols, and ongoing audit mechanisms. A well-designed PKI not only ensures compliance but also builds customer trust and protects sensitive data across all digital touchpoints." },
+        new() { Id = 3, Title = "Power BI vs Custom Dashboards: What's Right for Your Business?", Category = "Business Intelligence", Summary = "Choosing between Microsoft Power BI and a custom-built BI dashboard can be difficult. This guide helps you evaluate both options based on your specific business requirements.", Author = "Analytics Team", PublishedDate = new DateTime(2024, 9, 10), ImageUrl = "https://images.pexels.com/photos/590041/pexels-photo-590041.jpeg?w=700", Tags = new() { "Power BI", "Business Intelligence", "Analytics", "Data" }, Content = "Power BI excels at rapid deployment, rich visualization libraries, and seamless Microsoft ecosystem integration. Custom dashboards, however, offer unmatched flexibility, brand consistency, and deep integration with proprietary data sources. For organizations with standard reporting needs and existing Microsoft licenses, Power BI delivers exceptional ROI. For those requiring complex workflows, real-time streaming from non-standard sources, or white-labeled reporting for external clients, a custom ASP.NET Core-based BI solution is the superior choice. Many enterprises successfully combine both approaches." },
+        new() { Id = 4, Title = "Flutter vs React Native: Choosing a Cross-Platform Stack in 2024", Category = "Mobile Development", Summary = "We compare Flutter and React Native across performance, developer experience, ecosystem maturity, and enterprise readiness to help you make the right choice.", Author = "Mobile Team", PublishedDate = new DateTime(2024, 8, 20), ImageUrl = "https://images.pexels.com/photos/4144923/pexels-photo-4144923.jpeg?w=700", Tags = new() { "Flutter", "React Native", "Mobile", "Cross-Platform" }, Content = "Flutter, backed by Google, uses the Dart language and its own rendering engine (Skia/Impeller), delivering pixel-perfect UIs with excellent performance. React Native, backed by Meta, uses JavaScript and bridges to native components, making it ideal for teams with existing web development skills. In 2024, Flutter has matured significantly with strong enterprise adoption and excellent tooling. React Native benefits from the massive JavaScript ecosystem and is easier to adopt for JavaScript-heavy teams. For greenfield enterprise mobile projects, Flutter is increasingly the preferred choice for its performance and consistent behavior across platforms." },
+        new() { Id = 5, Title = "Real-Time GPS Fleet Tracking: Architecture and Best Practices", Category = "IoT", Summary = "Building a scalable GPS tracking platform involves more than map rendering. Learn about the architecture decisions, protocols, and data strategies behind production-grade fleet systems.", Author = "IoT Team", PublishedDate = new DateTime(2024, 8, 5), ImageUrl = "https://images.pexels.com/photos/1427541/pexels-photo-1427541.jpeg?w=700", Tags = new() { "GPS", "IoT", "Fleet Management", "Real-Time" }, Content = "A production GPS tracking platform requires careful consideration of data ingestion protocols (MQTT vs HTTP), storage strategies for high-frequency telemetry, real-time processing pipelines, and scalable map rendering. We recommend using MQTT for device-to-server communication due to its low overhead, SignalR or WebSockets for real-time browser updates, and time-series databases like TimescaleDB for efficient storage. Geo-fencing logic should run server-side using PostGIS extensions. Front-end mapping should leverage tile caching and clustering to handle thousands of concurrent assets without performance degradation." },
+        new() { Id = 6, Title = "AI Chatbots for Enterprise: Implementation Guide", Category = "AI / ML", Summary = "Enterprise AI chatbots require more than an LLM API call. This guide covers integration patterns, training data, security considerations, and measuring ROI.", Author = "AI Team", PublishedDate = new DateTime(2024, 7, 18), ImageUrl = "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?w=700", Tags = new() { "AI", "Chatbot", "NLP", "Enterprise" }, Content = "Enterprise chatbot deployments must address data security, LLM hallucination risks, integration with enterprise systems (CRM, ERP, HRMS), multi-channel deployment, and ROI measurement. We recommend a retrieval-augmented generation (RAG) architecture that grounds LLM responses in your proprietary knowledge base, reducing hallucination risk while maintaining conversation quality. Azure OpenAI or AWS Bedrock provide enterprise-grade LLM APIs with data residency guarantees. Key integrations should cover authentication (SSO/LDAP), ticketing systems, and CRM platforms. Define success metrics upfront: containment rate, CSAT scores, and cost-per-interaction are standard KPIs." },
+    };
+
+    public IActionResult Index(string? category = null)
+    {
+        var categories = Posts.Select(p => p.Category).Distinct().OrderBy(c => c).ToList();
+        var posts = string.IsNullOrEmpty(category)
+            ? Posts
+            : Posts.Where(p => p.Category.Equals(category, StringComparison.OrdinalIgnoreCase)).ToList();
+
+        ViewBag.Posts = posts;
+        ViewBag.Categories = categories;
+        ViewBag.ActiveCategory = category ?? "All";
+        return View();
+    }
+
+    public IActionResult Detail(int id)
+    {
+        var post = Posts.FirstOrDefault(p => p.Id == id);
+        if (post == null) return NotFound();
+        ViewBag.Post = post;
+        ViewBag.RelatedPosts = Posts.Where(p => p.Id != id && p.Category == post.Category).Take(3).ToList();
+        return View();
+    }
+}

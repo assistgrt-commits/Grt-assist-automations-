@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Professional IT Services - Web Development, Mobile Apps, Cybersecurity, BI, AI/ML, Digital Marketing" />
+    <title>@(ViewBag.Title != null ? ViewBag.Title + " | " : "")TechSolve Pro - Enterprise IT Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="topbar">
+        <div class="container topbar-inner">
+            <div class="topbar-left">
+                <a href="tel:+918260003333"><i class="fas fa-phone-alt"></i> +91-82600-03333</a>
+                <a href="mailto:info@techsolvepro.com"><i class="fas fa-envelope"></i> info@techsolvepro.com</a>
+            </div>
+            <div class="topbar-right">
+                <a href="https://linkedin.com" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://twitter.com" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://youtube.com" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="navbar" id="mainNav">
+        <div class="container nav-inner">
+            <a href="/" class="navbar-brand">
+                <span class="brand-icon"><i class="fas fa-microchip"></i></span>
+                <div class="brand-text">
+                    <span class="brand-name">TechSolve<span class="brand-accent">Pro</span></span>
+                    <span class="brand-tagline">Enterprise IT Solutions</span>
+                </div>
+            </a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li class="nav-item has-dropdown">
+                        <a href="/Services" class="nav-link">Services <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown mega-dropdown">
+                            <div class="mega-grid">
+                                <div class="mega-col">
+                                    <h4>Software Development</h4>
+                                    <a href="/Services/Detail/WebDevelopment"><i class="fas fa-globe"></i> Web Development</a>
+                                    <a href="/Services/Detail/MobileApps"><i class="fas fa-mobile-alt"></i> Mobile App Development</a>
+                                    <a href="/Services/Detail/AiMl"><i class="fas fa-robot"></i> AI / ML Development</a>
+                                    <a href="/Services/Detail/Erp"><i class="fas fa-cogs"></i> ERP Solutions</a>
+                                </div>
+                                <div class="mega-col">
+                                    <h4>Design & Marketing</h4>
+                                    <a href="/Services/Detail/UiUxDesign"><i class="fas fa-paint-brush"></i> UI / UX Design</a>
+                                    <a href="/Services/Detail/DigitalMarketing"><i class="fas fa-bullhorn"></i> Digital Marketing</a>
+                                    <a href="/Services/Detail/Ecommerce"><i class="fas fa-shopping-cart"></i> E-Commerce</a>
+                                    <a href="/Services/Detail/WordPress"><i class="fab fa-wordpress"></i> WordPress Development</a>
+                                </div>
+                                <div class="mega-col">
+                                    <h4>Infrastructure & Security</h4>
+                                    <a href="/Services/Detail/CloudHosting"><i class="fas fa-cloud"></i> Cloud & Hosting</a>
+                                    <a href="/Services/Detail/Cybersecurity"><i class="fas fa-shield-alt"></i> Cybersecurity & PKI</a>
+                                    <a href="/Services/Detail/DigitalSignature"><i class="fas fa-file-signature"></i> Digital Signatures</a>
+                                    <a href="/Services/Detail/Ssl"><i class="fas fa-lock"></i> SSL Certificates</a>
+                                </div>
+                                <div class="mega-col">
+                                    <h4>Analytics & IoT</h4>
+                                    <a href="/Services/Detail/BusinessIntelligence"><i class="fas fa-chart-bar"></i> Business Intelligence</a>
+                                    <a href="/Services/Detail/GpsTracking"><i class="fas fa-map-marker-alt"></i> GPS Tracking</a>
+                                    <a href="/Services/Detail/Email"><i class="fas fa-envelope"></i> Email & Office 365</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item has-dropdown">
+                        <a href="/Portfolio" class="nav-link">Portfolio <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown">
+                            <a href="/Portfolio"><i class="fas fa-th-large"></i> All Projects</a>
+                            <a href="/Portfolio?filter=Enterprise+Web"><i class="fas fa-building"></i> Enterprise Web</a>
+                            <a href="/Portfolio?filter=Government"><i class="fas fa-landmark"></i> Government</a>
+                            <a href="/Portfolio?filter=IoT+%26+Tracking"><i class="fas fa-satellite"></i> IoT & Tracking</a>
+                            <a href="/Portfolio?filter=Healthcare+IT"><i class="fas fa-heartbeat"></i> Healthcare IT</a>
+                        </div>
+                    </li>
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="nav-link">Solutions <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown">
+                            <a href="/Services/Detail/GpsTracking"><i class="fas fa-map-marker-alt"></i> Fleet & GPS Tracking</a>
+                            <a href="/Services/Detail/Erp"><i class="fas fa-industry"></i> ERP & Enterprise</a>
+                            <a href="/Services/Detail/BusinessIntelligence"><i class="fas fa-chart-pie"></i> BI & Analytics</a>
+                            <a href="/Services/Detail/AiMl"><i class="fas fa-brain"></i> AI & Automation</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/Career" class="nav-link">Careers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/Blog" class="nav-link">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/Contact" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+                <a href="/Contact" class="btn-nav-cta">Get a Quote <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container footer-grid">
+                <div class="footer-col footer-brand-col">
+                    <div class="footer-brand">
+                        <span class="brand-icon"><i class="fas fa-microchip"></i></span>
+                        <div class="brand-text">
+                            <span class="brand-name">TechSolve<span class="brand-accent">Pro</span></span>
+                            <span class="brand-tagline">Enterprise IT Solutions</span>
+                        </div>
+                    </div>
+                    <p class="footer-about">Delivering cutting-edge IT solutions since 2006. ISO 9001 certified, with expertise spanning web development, cybersecurity, AI/ML, business intelligence, and digital transformation.</p>
+                    <div class="footer-certifications">
+                        <span class="cert-badge">ISO 9001:2015</span>
+                        <span class="cert-badge">ISO 27001</span>
+                        <span class="cert-badge">CMMI L3</span>
+                    </div>
+                    <div class="footer-social">
+                        <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="/Services/Detail/WebDevelopment">Web Development</a></li>
+                        <li><a href="/Services/Detail/MobileApps">Mobile App Development</a></li>
+                        <li><a href="/Services/Detail/Cybersecurity">Cybersecurity & PKI</a></li>
+                        <li><a href="/Services/Detail/BusinessIntelligence">Business Intelligence</a></li>
+                        <li><a href="/Services/Detail/AiMl">AI / ML Development</a></li>
+                        <li><a href="/Services/Detail/DigitalMarketing">Digital Marketing</a></li>
+                        <li><a href="/Services/Detail/CloudHosting">Cloud & Hosting</a></li>
+                        <li><a href="/Services/Detail/GpsTracking">GPS Tracking</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/Portfolio">Our Portfolio</a></li>
+                        <li><a href="/Career">Careers</a></li>
+                        <li><a href="/Blog">Blog & Insights</a></li>
+                        <li><a href="/Contact">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Disclaimer</a></li>
+                        <li><a href="#">Sitemap</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="contact-list">
+                        <li><i class="fas fa-map-marker-alt"></i> <span>Plot No. 123, Tech Park, Bhubaneswar, Odisha - 751024</span></li>
+                        <li><i class="fas fa-phone-alt"></i> <a href="tel:+918260003333">+91-82600-03333</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@techsolvepro.com">info@techsolvepro.com</a></li>
+                        <li><i class="fas fa-clock"></i> <span>Mon – Sat: 9:00 AM – 6:30 PM</span></li>
+                    </ul>
+                    <div class="footer-map-link">
+                        <a href="https://maps.google.com" target="_blank" class="btn-map"><i class="fas fa-directions"></i> Get Directions</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+                <p>&copy; @DateTime.Now.Year TechSolve Pro. All rights reserved.</p>
+                <p>Designed & Developed with <i class="fas fa-heart" style="color:#e74c3c"></i> using ASP.NET Core &amp; C#</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>
